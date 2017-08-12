@@ -1,0 +1,29 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    awesome_print (1.7.0)
+    dot_hash (1.1.8)
+    equatable (0.5.0)
+    excon (0.55.0)
+    json (1.8.3)
+    mini_portile2 (2.1.0)
+    nokogiri (1.7.2)
+      mini_portile2 (~> 2.1.0)
+    pastel (0.7.1)
+      equatable (~> 0.5.0)
+      tty-color (~> 0.4.0)
+    tty-color (0.4.2)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  awesome_print
+  dot_hash
+  excon
+  json
+  nokogiri
+  pastel
+
+BUNDLED WITH
+   1.15.0

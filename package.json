@@ -1,0 +1,62 @@
+{
+  "name": "awesoome-api",
+  "version": "1.0.0",
+  "description": "API for awesome lists. Scraped from awesome list.",
+  "main": "dist",
+  "config": {
+    "remote_ssh": "serverpilot@45.76.149.138",
+    "remote_dir": "/srv/users/serverpilot/apps/api-awesoome",
+    "process_name": "api-awesoome"
+  },
+  "scripts": {
+    "dev": "nodemon -w src --ignore db.json --ignore last-updated.json --exec \"babel-node src --presets es2015,stage-0\"",
+    "build": "babel src -s -D -d dist --presets es2015,stage-0",
+    "start": "node dist",
+    "prestart": "npm run -s build",
+    "test": "eslint src",
+    "fetch": "babel-node --presets es2015,stage-0 src/fetch-run.js",
+    "deploy": "rsync --progress -e \"ssh $npm_package_config_remote_ssh\" -rlpt --compress --omit-dir-times --exclude .git --exclude dist --exclude node_modules --exclude src/db.json --exclude src/last-updated.json --delete ./ :$npm_package_config_remote_dir && ssh $npm_package_config_remote_ssh \"cd $npm_package_config_remote_dir && yarn && pm2 start npm --name $npm_package_config_process_name -- start\"",
+    "deploy-restart": "rsync --progress -e \"ssh $npm_package_config_remote_ssh\" -rlpt --compress --omit-dir-times --exclude .git --exclude dist --exclude node_modules --exclude src/db.json --exclude src/last-updated.json --delete ./ :$npm_package_config_remote_dir && ssh $npm_package_config_remote_ssh \"cd $npm_package_config_remote_dir && yarn && pm2 restart $npm_package_config_process_name\""
+  },
+  "eslintConfig": {
+    "extends": "eslint:recommended",
+    "parserOptions": {
+      "ecmaVersion": 8,
+      "sourceType": "module"
+    },
+    "env": {
+      "node": true
+    },
+    "rules": {
+      "no-console": 0,
+      "no-unused-vars": 1
+    }
+  },
+  "repository": "developit/express-es6-rest-api",
+  "author": "Jason Miller <jason@developit.ca>",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.13.3",
+    "chalk": "^2.1.0",
+    "cheerio": "^1.0.0-rc.2",
+    "compression": "^1.7.0",
+    "cors": "^2.8.4",
+    "express": "^4.15.4",
+    "isomorphic-fetch": "^2.2.1",
+    "json-server": "^0.12.0",
+    "lowdb": "^0.16.2",
+    "morgan": "^1.8.0",
+    "octonode": "^0.8.0",
+    "resource-router-middleware": "^0.7.0",
+    "sync-request": "^4.1.0",
+    "sync-request-rapper": "^1.0.1"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.9.0",
+    "babel-core": "^6.25.0",
+    "babel-preset-es2015": "^6.9.0",
+    "babel-preset-stage-0": "^6.5.0",
+    "eslint": "^4.4.1",
+    "nodemon": "^1.9.2"
+  }
+}
