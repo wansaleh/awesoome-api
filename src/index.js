@@ -2,7 +2,7 @@ import path from 'path'
 import jsonServer from 'json-server'
 // import fetcher from './fetch'
 import cors from 'cors';
-import fetch from 'isomorphic-fetch';
+import fetch from 'isomorphic-fetch'
 import { token, repo } from '../github.json'
 
 const server = jsonServer.create()
