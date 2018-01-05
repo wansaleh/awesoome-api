@@ -63,7 +63,7 @@ $_categories = find_a($html->find('.entry-content', 0)->find('h2', 0)->next_sibl
 $categories_count = count($_categories);
 
 $data = [
-  'things' => []
+  'categories' => []
 ];
 
 // get totals first
@@ -108,7 +108,7 @@ foreach ($_categories as $category) {
     $items[] = processItem($title, $item, ++$i, $_items_count, $progressLog);
   }
 
-  $data['things'][] = [
+  $data['categories'][] = [
     'id' => $id,
     'title' => $title,
     'items' => $items
@@ -157,6 +157,20 @@ function processItem($parentTitle, $item, $i, $total, $progressLog, $prefix = ''
 
   $_next = $item->next_sibling();
 
+  $output = [
+    'id' => $full_name,
+    'title' => $title,
+    'url' => $url,
+    'parent_title' => $parentTitle,
+    'description' => $description,
+    'owner' => $owner,
+    'owner_url' => $owner_url,
+    'homepage' => $homepage,
+    'stargazers' => $stargazers,
+    'last_commit' => $last_commit,
+    'pushed_at' => $pushed_at,
+  ];
+
   if ($_next && $_next->tag === 'ul') {
     $_subitems = find_a($_next);
     $_subitems_count = count($_subitems);
@@ -169,35 +183,12 @@ function processItem($parentTitle, $item, $i, $total, $progressLog, $prefix = ''
       $subitems[] = processItem($title, $item, ++$k, $_subitems_count, $progressLog, $prefix . '  ');
     }
 
-    return [
-      'id' => $full_name,
-      'title' => $title,
-      'url' => $url,
-      'parent_title' => $parentTitle,
-      // 'description' => $description,
-      // 'owner' => $owner,
-      // 'owner_url' => $owner_url,
-      // 'homepage' => $homepage,
-      'stargazers' => $stargazers,
-      'last_commit' => $last_commit,
-      'pushed_at' => $pushed_at,
-      'items' => $subitems,
-    ];
+    $output['items'] = $subitems;
+
+    return $output;
   }
   else {
-    return [
-      'id' => $full_name,
-      'title' => $title,
-      'url' => $url,
-      'parent_title' => $parentTitle,
-      // 'description' => $description,
-      // 'owner' => $owner,
-      // 'owner_url' => $owner_url,
-      // 'homepage' => $homepage,
-      'stargazers' => $stargazers,
-      'last_commit' => $last_commit,
-      'pushed_at' => $pushed_at,
-    ];
+    return $output;
   }
 }
 
