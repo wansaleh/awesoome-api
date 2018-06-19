@@ -2,7 +2,6 @@
     "require": {
         "guzzlehttp/guzzle": "^6.2",
         "emanueleminotto/simple-html-dom": "^1.5",
-        "alexxxnf/nf_pp": "^2.2",
         "kevinlebrun/colors.php": "^1.0",
         "dariuszp/cli-progress-bar": "^1.0",
         "trash-panda/progress-bar-log": "^1.3"

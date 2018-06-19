@@ -14,6 +14,9 @@ server.use(middlewares)
 server.use(cors({ origin: '*', credentials: true }));
 
 server.get('/info', (req, res) => {
+  const last_updated = require('../db/last-updated.json').date
+  const current_time = (new Date()).toISOString()
+
   fetch(`https://api.github.com/repos/${repo}`, {
     headers: {
       'Authorization': `token ${token}`,
@@ -21,8 +24,13 @@ server.get('/info', (req, res) => {
     }
   })
   .then(res => res.json())
-  .then(data => {
-    res.json(data)
+  .then(base_repo => {
+    const output = {
+      base_repo,
+      last_updated,
+      current_time
+    }
+    res.json(output)
   })
 })
 
@@ -42,5 +50,5 @@ server.get('/commits', (req, res) => {
 server.use(router)
 
 server.listen(3123, () => {
-  console.log('JSON Server is running')
+  console.log('JSON Server is running on port 3123')
 })

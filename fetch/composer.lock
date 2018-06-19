@@ -1,57 +1,11 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "30d9cf917ab2a19de3a9e3127d3fd24c",
+    "content-hash": "2c8109e966294965afeea1c5874ec362",
     "packages": [
-        {
-            "name": "alexxxnf/nf_pp",
-            "version": "v2.2.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/alexxxnf/nf_pp.git",
-                "reference": "e547ecf35b956967a0e131215bf78ea9cab22157"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/alexxxnf/nf_pp/zipball/e547ecf35b956967a0e131215bf78ea9cab22157",
-                "reference": "e547ecf35b956967a0e131215bf78ea9cab22157",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.2.0"
-            },
-            "type": "library",
-            "autoload": {
-                "files": [
-                    "nf_pp.php"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Aleksey Maydokin",
-                    "email": "amaydokin@gmail.com"
-                }
-            ],
-            "description": "Pretty \"print_r\" with some additional features",
-            "homepage": "https://github.com/alexxxnf/nf_pp/",
-            "keywords": [
-                "array",
-                "debug",
-                "dump",
-                "object",
-                "print",
-                "print_r",
-                "var_dump"
-            ],
-            "time": "2015-04-04T19:37:26+00:00"
-        },
         {
             "name": "dariuszp/cli-progress-bar",
             "version": "1.0.2",
